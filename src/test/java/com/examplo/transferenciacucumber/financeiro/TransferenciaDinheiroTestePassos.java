@@ -2,9 +2,11 @@ package com.examplo.transferenciacucumber.financeiro;
 
 import com.examplo.transferenciacucumber.modelo.Conta;
 import com.examplo.transferenciacucumber.modelo.TipoConta;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Entao;
-import cucumber.api.java.pt.Quando;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.java.pt.Quando;
+
+
 
 import static org.junit.Assert.assertTrue;
 

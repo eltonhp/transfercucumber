@@ -18,6 +18,13 @@ public class Conta {
 
     public Conta(Double saldo, Integer numeroConta, TipoConta tipoConta) {
         this(null,numeroConta, saldo, null, tipoConta);
+
+    }
+
+
+    public Conta(String dono, Integer numero, Double saldo) {
+        this(null,numero, saldo, null, TipoConta.CORRENTE);
+
     }
 
     public boolean transferir(Double valor) {

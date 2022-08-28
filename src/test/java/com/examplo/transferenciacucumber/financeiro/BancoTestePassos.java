@@ -2,21 +2,32 @@ package com.examplo.transferenciacucumber.financeiro;
 
 import com.examplo.transferenciacucumber.modelo.Banco;
 import com.examplo.transferenciacucumber.modelo.Conta;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Entao;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.spring.CucumberContextConfiguration;
+
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
+@CucumberContextConfiguration
 public class BancoTestePassos {
     private Banco banco;
     private int totalContas;
     private Double totalDinheiro;
 
     @Dado("^que as contas sao do \"(.*?)\"$")
-    public void que_as_contas_sao_do(String nome, List<Conta> listaDeContas) throws Throwable {
+    public void que_as_contas_sao_do(String nome, DataTable datatable) throws Throwable {
         // Definição do banco e associando as contas
+        List<Conta> listaDeContas = datatable.cells()
+                 .stream()
+                 .skip(1)
+                 .map(campos -> new Conta(campos.get(0),Integer.parseInt(campos.get(1)), Double.parseDouble(campos.get(2))))
+                 .collect(Collectors.toList());
+
         banco = new Banco(nome, listaDeContas);
 
     }
